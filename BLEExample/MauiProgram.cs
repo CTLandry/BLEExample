@@ -2,6 +2,8 @@
 using BLEExample.Services.Navigation;
 using BLEExample.Services.Settings;
 using BLEExample.Services.BLE.Scanning;
+using BLEExample.ViewModels;
+using BLEExample.Views;
 
 namespace BLEExample;
 
@@ -32,21 +34,21 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddSingleton<ISettingsService, SettingsService>();
         mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
-        mauiAppBuilder.Services.AddTransient<IBLEScanningService>();
+        mauiAppBuilder.Services.AddSingleton<IBLEScanningService, BLEScanningService>();
 
         return mauiAppBuilder;
     }
 
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
     {
-       //TODO register view models
+        mauiAppBuilder.Services.AddTransient<BLEScanViewModel>();
 
         return mauiAppBuilder;
     }
 
     public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
     {
-        //TODO register views
+        mauiAppBuilder.Services.AddTransient<BLEScanView>();
 
         return mauiAppBuilder;
     }

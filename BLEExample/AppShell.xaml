@@ -3,12 +3,15 @@
     x:Class="BLEExample.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:BLEExample"
-    Shell.FlyoutBehavior="Disabled">
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    xmlns:views="clr-namespace:BLEExample.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarIsVisible="False">
+    <FlyoutItem>
+        <ShellContent
+        Title=""
+        ContentTemplate="{DataTemplate views:BLEScanView}"
+        Route="BLEScan" />
+    </FlyoutItem>
+   
 
 </Shell>

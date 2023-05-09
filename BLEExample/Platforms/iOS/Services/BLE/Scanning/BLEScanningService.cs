@@ -1,7 +1,5 @@
 ﻿
-using BLEExample.Services.BLE.Scanning;
-
-namespace BLEExample.Platforms.iOS.Services.BLE.Scanning
+namespace BLEExample.Services.BLE.Scanning
 {
     public class BLEScanningService : IBLEScanningService
     {

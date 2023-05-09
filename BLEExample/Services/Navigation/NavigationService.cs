@@ -10,7 +10,7 @@
         /// <summary>
         /// Initalizes the application to the default start view
         /// </summary>
-        public Task InitializeAsync() => NavigateToAsync("//StartView"); //TODO add base start view
+        public Task InitializeAsync() => NavigateToAsync("//BLEScan"); 
 
         /// <summary>
         /// Routes the appliation to a specific view using Shell navigations routing 
