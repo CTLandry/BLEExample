@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:BLEExample.Views"
     Shell.FlyoutBehavior="Disabled"
-    Shell.TabBarIsVisible="False">
+    Shell.TabBarIsVisible="False"
+    Shell.NavBarIsVisible="False">
     <FlyoutItem>
         <ShellContent
         Title=""
