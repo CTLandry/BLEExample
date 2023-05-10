@@ -3,9 +3,9 @@ using System.Collections.ObjectModel;
 using BLEExample.Services.BLE.SharedImplementation.EventArgs;
 using BLEExample.Services.BLE.Interaction;
 using BLEExample.Services.Dialog;
-using BLEExample.Services.Settings;
 using BLEExample.Services.ErrorHandling;
 using BLEExample.Services.PermissionRequests;
+using BLEExample.Services.Navigation;
 
 namespace BLEExample.ViewModels
 {
@@ -16,8 +16,8 @@ namespace BLEExample.ViewModels
         private readonly IPermissionService _permissionService;
 
         public ObservableCollection<IBLEPeripheral> BLEPeripherals { get; set; } = new ObservableCollection<IBLEPeripheral>();
-        public BLEScanViewModel(IBLEHandler bleHandlerService, 
-                                INavigation navigationService, 
+        public BLEScanViewModel(IBLEHandler bleHandlerService,
+                                INavigationService navigationService, 
                                 IDialogService dialogService, 
                                 IErrorReportingService errorReportingService,
                                 IPermissionService permissionService) 

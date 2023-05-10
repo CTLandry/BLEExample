@@ -1,5 +1,6 @@
 ﻿using BLEExample.Services.Dialog;
 using BLEExample.Services.ErrorHandling;
+using BLEExample.Services.Navigation;
 using BLEExample.Services.Settings;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -12,10 +13,10 @@ namespace BLEExample.ViewModels
     /// </summary>
     public abstract class ViewModel : IQueryAttributable, INotifyPropertyChanged
     {
-        private readonly INavigation _navigationService;
+        private readonly INavigationService _navigationService;
         private readonly IErrorReportingService _errorReportingService;
 
-        public ViewModel(INavigation navigationService, 
+        public ViewModel(INavigationService navigationService, 
                          IErrorReportingService errorReportingService) 
         {
             _navigationService = navigationService;
