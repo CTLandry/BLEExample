@@ -1,4 +1,6 @@
-﻿using BLEExample.Services.BLE.SharedImplementation.EventArgs;
+﻿using BLEExample.Services.BLE.SharedImplementation;
+using BLEExample.Services.BLE.SharedImplementation.Contracts;
+using BLEExample.Services.BLE.SharedImplementation.EventArgs;
 
 namespace BLEExample.Services.BLE.Interaction
 {
@@ -36,5 +38,36 @@ namespace BLEExample.Services.BLE.Interaction
         /// The handler is or is not currently scanning for Peripherals.
         /// </summary>
         bool IsScanning { get; }
+
+        /// <summary>
+        /// Start the BLE scan
+        /// </summary>
+        /// <param name="allowDuplicatesKey"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task StartScanningForDevicesAsync(bool allowDuplicatesKey = false,
+                                                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Stop the scan
+        /// </summary>
+        public void StopScanningForDevicesAsync();
+
+        /// <summary>
+        /// Connect to the target ble peripheral
+        /// </summary>
+        /// <param name="peripheral"></param>
+        /// <param name="connectParameters"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task ConnectToPeripheralAsync(IBLEPeripheral peripheral, 
+            BLEConnectionParameters connectParameters = default, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Disconnect from a connected peripheral
+        /// </summary>
+        /// <param name="peripheral"></param>
+        /// <returns></returns>
+        public Task DisconnectPeripheralAsync(IBLEPeripheral peripheral);
     }
 }

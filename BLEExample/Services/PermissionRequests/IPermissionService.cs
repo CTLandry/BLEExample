@@ -6,5 +6,7 @@ namespace BLEExample.Services.PermissionRequests
     /// </summary>
     public interface IPermissionService
     {
+        public Task<PermissionStatus> CheckAndRequestLocationPermission();
+        public Task<PermissionStatus> CheckAndRequestBLEPermission();
     }
 }
