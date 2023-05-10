@@ -1,24 +1,24 @@
 ﻿using Android.Bluetooth;
 using Android.Bluetooth.LE;
+using Android.Content;
 using BLEExample.Models;
 using BLEExample.Services.BLE.SharedImplementation;
 using BLEExample.Services.BLE.SharedImplementation.Contracts;
 
-namespace BLEExample.Platforms.Android.Services.BLE.PlatformImplementation
+namespace BLEExample.Services.BLE.Interaction
 {
     /// <summary>
     /// Native android implementation of the BLEHandler
     /// </summary>
-    public class BLEHandler : BLEHandlerBase
+    public class BLEHandler : BLEHandlerBase, IBLEHandler
     {
         private readonly BluetoothManager _bluetoothManager;
-        private readonly BluetoothAdapter _bluetoothAdapter;
+        //private readonly BluetoothAdapter _bluetoothAdapter;
         private readonly BleScanCallback _scanCallback;
 
-        public BLEHandler(BluetoothManager blueToothManager)
+        public BLEHandler()
         {
-            _bluetoothManager = blueToothManager;
-            _bluetoothAdapter = blueToothManager.Adapter;
+            _bluetoothManager = (BluetoothManager)MauiApplication.Current.GetSystemService(Context.BluetoothService);
             _scanCallback = new BleScanCallback(this);
 
         }
@@ -37,9 +37,9 @@ namespace BLEExample.Platforms.Android.Services.BLE.PlatformImplementation
         {
             try
             {
-                if (_bluetoothAdapter.BluetoothLeScanner != null)
+                if (_bluetoothManager.Adapter.BluetoothLeScanner != null)
                 {
-                    _bluetoothAdapter.BluetoothLeScanner.StartScan(_scanCallback);
+                    _bluetoothManager.Adapter.BluetoothLeScanner.StartScan(_scanCallback);
                 }
                 return Task.FromResult(true);
             }

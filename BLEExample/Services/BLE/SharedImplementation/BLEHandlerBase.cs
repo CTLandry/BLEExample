@@ -1,10 +1,10 @@
-﻿using BLEExample.Services.BLE.SharedCore.Builder;
+﻿using BLEExample.Services.BLE.SharedImplementation;
+using BLEExample.Services.BLE.SharedCore.Builder;
 using BLEExample.Services.BLE.SharedImplementation.Contracts;
 using BLEExample.Services.BLE.SharedImplementation.EventArgs;
 using BLEExample.Services.BLE.SharedImplementation.Exceptions;
-using Microsoft.Maui.Controls;
 using System.Collections.Concurrent;
-using System.Diagnostics;
+using BLEExample.Services.BLE.Interaction;
 
 namespace BLEExample.Services.BLE.SharedImplementation
 {

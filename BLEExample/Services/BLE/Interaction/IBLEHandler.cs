@@ -1,6 +1,6 @@
 ﻿using BLEExample.Services.BLE.SharedImplementation.EventArgs;
 
-namespace BLEExample.Services.BLE.SharedImplementation.Contracts
+namespace BLEExample.Services.BLE.Interaction
 {
     /// <summary>
     /// Definition of interactions with BLE

@@ -1,9 +1,10 @@
 ﻿using CommunityToolkit.Maui;
 using BLEExample.Services.Navigation;
 using BLEExample.Services.Settings;
-using BLEExample.Services.BLE.Scanning;
 using BLEExample.ViewModels;
 using BLEExample.Views;
+using BLEExample.Services.BLE.SharedImplementation;
+using BLEExample.Services.BLE.Interaction;
 
 namespace BLEExample;
 
@@ -34,7 +35,7 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddSingleton<ISettingsService, SettingsService>();
         mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
-        mauiAppBuilder.Services.AddSingleton<IBLEScanningService, BLEScanningService>();
+        mauiAppBuilder.Services.AddSingleton<IBLEHandler, BLEHandler>();
 
         return mauiAppBuilder;
     }
