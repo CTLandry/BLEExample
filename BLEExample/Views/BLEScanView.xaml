@@ -4,16 +4,28 @@
              x:Class="BLEExample.Views.BLEScanView"
              xmlns:local="clr-namespace:BLEExample.ViewModels"
              Title="BLEScanView">
-   
-   
-        <CollectionView HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <CollectionView Grid.Row="0"
                         ItemsSource="{Binding BLEPeripherals}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Label Text="{Binding Name}"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            
+
         </CollectionView>
+        <Button Grid.Row="1"
+                HeightRequest="75"
+                WidthRequest="200"
+                Text="Scan"
+                Command="{Binding ScanCommand}">
+
+        </Button>
+    </Grid>
+      
 </ContentPage>

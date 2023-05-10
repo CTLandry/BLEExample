@@ -38,29 +38,15 @@ namespace BLEExample.Services.PermissionRequests
 
         public async Task<PermissionStatus> CheckAndRequestBLEPermission()
         {
-            var blePermissionsService = new BLEPermissionsService();
-
-            PermissionStatus status = await blePermissionsService.CheckStatusAsync();
+            
+            PermissionStatus status = await Permissions.CheckStatusAsync<BLEPermission>();
 
             if (status == PermissionStatus.Granted)
                 return status;
 
-            if (status == PermissionStatus.Denied && DeviceInfo.Platform == DevicePlatform.iOS)
-            {
-                return status;
-            }
-
-            if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
-            {
-                await _dialogService.ShowAlert("BLE Example would like to get your permission for using blue tooth", "", "Ok");
-            }
-
-            var result = await blePermissionsService.RequestBluetoothAccess();
-
-            status = result ? PermissionStatus.Granted : PermissionStatus.Denied;
+            status = await Permissions.RequestAsync<BLEPermission>();
 
             return status;
-
 
         }
     }

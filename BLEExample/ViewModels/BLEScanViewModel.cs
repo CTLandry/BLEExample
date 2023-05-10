@@ -6,6 +6,7 @@ using BLEExample.Services.Dialog;
 using BLEExample.Services.ErrorHandling;
 using BLEExample.Services.PermissionRequests;
 using BLEExample.Services.Navigation;
+using System.Windows.Input;
 
 namespace BLEExample.ViewModels
 {
@@ -16,6 +17,9 @@ namespace BLEExample.ViewModels
         private readonly IPermissionService _permissionService;
 
         public ObservableCollection<IBLEPeripheral> BLEPeripherals { get; set; } = new ObservableCollection<IBLEPeripheral>();
+        public bool IsScanning = false;
+
+        public ICommand ScanCommand { get; set; }
         public BLEScanViewModel(IBLEHandler bleHandlerService,
                                 INavigationService navigationService, 
                                 IDialogService dialogService, 
@@ -28,6 +32,7 @@ namespace BLEExample.ViewModels
             _dialogService = dialogService;
             _permissionService = permissionService;
 
+            ScanCommand = new Command(async () => await ScanForDevices());
 
             _bleHandlerService.PeripheralDiscovered += PeripheralDiscovered;
             _bleHandlerService.PeripheralConnectionError += PeripheralConnectionError;
@@ -64,17 +69,25 @@ namespace BLEExample.ViewModels
 
         private async Task ScanForDevices()
         {
-            if(await _permissionService.CheckAndRequestLocationPermission() != PermissionStatus.Granted)
+            try
             {
-                return;
-            }
+                IsScanning = true;
+                if (await _permissionService.CheckAndRequestBLEPermission() != PermissionStatus.Granted)
+                {
+                    return;
+                }
 
-            if (await _permissionService.CheckAndRequestBLEPermission() != PermissionStatus.Granted)
+                await _bleHandlerService.StartScanningForDevicesAsync();
+            }
+            catch (Exception ex)
             {
-                return;
+                //TODO
             }
-
-            await _bleHandlerService.StartScanningForDevicesAsync();
+            finally
+            {
+                IsScanning = false;
+            }
+            
         }
 
         public override void ApplyQueryAttributes(IDictionary<string, object> query)

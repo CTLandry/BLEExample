@@ -43,7 +43,7 @@ namespace BLEExample.Services.BLE.Interaction
                 }
                 return Task.FromResult(true);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Task.FromResult(true);
                 //TODO android native scan exception
