@@ -7,7 +7,7 @@ namespace BLEExample.Services.PermissionRequests
     /// A service that helps with the boilerplate around using 
     /// Microsoft.ApplicationModel.Permissions
     /// </summary>
-    public class PermissionService
+    public class PermissionService : IPermissionService
     {
         private readonly IDialogService _dialogService;
         public PermissionService(IDialogService dialogService) 

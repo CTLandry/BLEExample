@@ -7,6 +7,7 @@ using BLEExample.Services.BLE.SharedImplementation;
 using BLEExample.Services.BLE.Interaction;
 using BLEExample.Services.Dialog;
 using BLEExample.Services.ErrorHandling;
+using BLEExample.Services.PermissionRequests;
 
 namespace BLEExample;
 
@@ -41,6 +42,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<IBLEHandler, BLEHandler>();
         mauiAppBuilder.Services.AddTransient<IDialogService, DialogService>();
         mauiAppBuilder.Services.AddTransient<IErrorReportingService, ErrorReportingService>();
+        mauiAppBuilder.Services.AddTransient<IPermissionService, PermissionService>();
 
 
 
