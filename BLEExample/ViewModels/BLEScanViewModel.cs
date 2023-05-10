@@ -2,17 +2,28 @@
 using System.Collections.ObjectModel;
 using BLEExample.Services.BLE.SharedImplementation.EventArgs;
 using BLEExample.Services.BLE.Interaction;
+using BLEExample.Services.Dialog;
+using BLEExample.Services.Settings;
+using BLEExample.Services.ErrorHandling;
 
 namespace BLEExample.ViewModels
 {
     public class BLEScanViewModel : ViewModel
     {
         private readonly IBLEHandler _bleHandlerService;
+        private readonly IDialogService _dialogService;
 
         public ObservableCollection<IBLEPeripheral> BLEPeripherals { get; set; } = new ObservableCollection<IBLEPeripheral>();
-        public BLEScanViewModel(IBLEHandler bleHandlerService) 
+        public BLEScanViewModel(IBLEHandler bleHandlerService, 
+                                INavigation navigationService, 
+                                IDialogService dialogService, 
+                                IErrorReportingService errorReportingService) 
+                                : base(navigationService, errorReportingService) 
         {
+            
             _bleHandlerService = bleHandlerService;
+            _dialogService = dialogService;
+            
             _bleHandlerService.PeripheralDiscovered += PeripheralDiscovered;
             _bleHandlerService.PeripheralConnectionError += PeripheralConnectionError;
             _bleHandlerService.PeripheralConnectionLost += PeripheralConnectionLost;

@@ -5,6 +5,8 @@ using BLEExample.ViewModels;
 using BLEExample.Views;
 using BLEExample.Services.BLE.SharedImplementation;
 using BLEExample.Services.BLE.Interaction;
+using BLEExample.Services.Dialog;
+using BLEExample.Services.ErrorHandling;
 
 namespace BLEExample;
 
@@ -35,7 +37,12 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddSingleton<ISettingsService, SettingsService>();
         mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
-        mauiAppBuilder.Services.AddSingleton<IBLEHandler, BLEHandler>();
+        
+        mauiAppBuilder.Services.AddTransient<IBLEHandler, BLEHandler>();
+        mauiAppBuilder.Services.AddTransient<IDialogService, DialogService>();
+        mauiAppBuilder.Services.AddTransient<IErrorReportingService, ErrorReportingService>();
+
+
 
         return mauiAppBuilder;
     }

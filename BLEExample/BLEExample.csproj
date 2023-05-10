@@ -57,6 +57,7 @@
 
 	<ItemGroup>
 	  <Folder Include="Platforms\Android\Services\BLE\PlatformImplementation\CallBackEventArgs\" />
+	  <Folder Include="Services\Permissions\" />
 	</ItemGroup>
 
 </Project>
