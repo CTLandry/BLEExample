@@ -1,5 +1,6 @@
 ﻿using BLEExample.Services.BLE.SharedImplementation;
 using BLEExample.Services.BLE.SharedImplementation.Contracts;
+using System.Collections;
 
 namespace BLEExample.Models
 {
@@ -24,6 +25,18 @@ namespace BLEExample.Models
         public object NativePeripheral { get; }
 
         /// <summary>
+        /// Relative indecator of signal strength
+        /// </summary>
+        public int Rssi { get; }
+
+        public string ReadableRssi => Rssi.ToString();
+
+        /// <summary>
+        /// Relative indecator of signal strength
+        /// </summary>
+        public IList ServiceUUIDs { get; }
+
+        /// <summary>
         /// Current state of connection to the peripheral
         /// </summary>
         public BLEPeripheralConnectionState ConnectionState { get; }
@@ -41,12 +54,14 @@ namespace BLEExample.Models
             throw new NotImplementedException();
         }
 
-        public BLEPeripheral(Guid id, string name, object nativePeripheral, BLEPeripheralConnectionState connectionState)
+        public BLEPeripheral(Guid id, string name, object nativePeripheral, BLEPeripheralConnectionState connectionState, int rssi, IList serviceUUIDs)
         {
             Id = id;
-            Name = name;
+            Name = name ?? "Unknown";
             NativePeripheral = nativePeripheral;
             ConnectionState = connectionState;
+            Rssi = rssi;
+            ServiceUUIDs = serviceUUIDs;
         }
     }
 }

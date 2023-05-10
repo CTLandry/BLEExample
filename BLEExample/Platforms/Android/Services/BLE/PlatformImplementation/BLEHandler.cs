@@ -72,8 +72,9 @@ namespace BLEExample.Services.BLE.Interaction
             public override void OnScanResult(ScanCallbackType callbackType, ScanResult result)
             {
                 base.OnScanResult(callbackType, result);
-
-                var peripheral = new BLEPeripheral(Guid.NewGuid(), result.Device.Name, result.Device, BLEPeripheralConnectionState.Disconnected);
+                    
+                var peripheral = new BLEPeripheral(Guid.NewGuid(), result.ScanRecord.DeviceName, result.Device, 
+                                                    BLEPeripheralConnectionState.Disconnected, result.Rssi, result.ScanRecord.ServiceSolicitationUuids?.ToList());
 
                 _bleHandler.HandleDiscoveredPeripheral(peripheral);
 
