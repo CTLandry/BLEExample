@@ -26,6 +26,17 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+  <array>
+    <!--for connecting to devices (client)-->
+    <string>bluetooth-central</string>
+  </array>
+  <!--Description of the Bluetooth request message (required on iOS 10, deprecated)-->
+  <key>NSBluetoothPeripheralUsageDescription</key>
+  <string>BLExample would like to have access to bluethooth.</string>
+
+  <!--Description of the Bluetooth request message (required on iOS 13)-->
+  <key>NSBluetoothAlwaysUsageDescription</key>
+  <string>BLExample would like to always have access to bluethooth.</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
 </dict>
