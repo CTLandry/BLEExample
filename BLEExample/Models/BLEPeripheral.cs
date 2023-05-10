@@ -28,6 +28,8 @@ namespace BLEExample.Models
         /// </summary>
         public BLEPeripheralConnectionState ConnectionState { get; }
 
+        public string ConnectionStateReadable => ConnectionState.ToString();
+
         /// <summary>
         /// How of ten to update the connection
         /// </summary>

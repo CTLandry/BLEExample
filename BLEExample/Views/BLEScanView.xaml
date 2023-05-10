@@ -6,15 +6,42 @@
              Title="BLEScanView">
 
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <ActivityIndicator Grid.RowSpan="2"
+                           Grid.Row="0" 
+                           Color="DarkGoldenrod"
+                           HeightRequest="50"
+                           WidthRequest="50"
+                           IsVisible="{Binding IsScanning}"
+                           IsRunning="{Binding IsScanning}"/>
         <CollectionView Grid.Row="0"
                         ItemsSource="{Binding BLEPeripherals}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding Name}"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Padding="30,0,30,10"
+                           FontSize="Header"
+                            TextColor="DarkGoldenrod"
+                           Text="{Binding Id}"/>
+                        <Label Grid.Row="1" Padding="30,0,30,0"
+                           FontSize="Header"
+                           Text="{Binding Name}"
+                           TextColor="DarkGoldenrod" />
+                        <Label Grid.Row="2" Padding="30,0,30,0"
+                           FontSize="Header"
+                           Text="{Binding ConnectionStateReadable}"
+                           TextColor="DarkGoldenrod" />
+                    </Grid>
+                    
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
@@ -26,6 +53,7 @@
                 Command="{Binding ScanCommand}">
 
         </Button>
+        
     </Grid>
       
 </ContentPage>

@@ -44,22 +44,22 @@ namespace BLEExample.ViewModels
 
         private void PeripheralAdvertised(object sender, BLEPeripheralEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void PeripheralConnected(object sender, BLEPeripheralEventArgs e)
         {
-            throw new NotImplementedException();
+           
         }
 
         private void PeripheralConnectionLost(object sender, BLEPeripheralErrorEventArgs e)
         {
-            throw new NotImplementedException();
+           
         }
 
         private void PeripheralConnectionError(object sender, BLEPeripheralErrorEventArgs e)
         {
-            throw new NotImplementedException();
+           
         }
 
         private void PeripheralDiscovered(object sender, BLEPeripheralEventArgs e)
@@ -72,11 +72,17 @@ namespace BLEExample.ViewModels
             try
             {
                 IsScanning = true;
-                if (await _permissionService.CheckAndRequestBLEPermission() != PermissionStatus.Granted)
+
+                if (await _permissionService.CheckAndRequestLocationPermission() != PermissionStatus.Granted)
                 {
                     return;
                 }
 
+                if (await _permissionService.CheckAndRequestBLEPermission() != PermissionStatus.Granted)
+                {
+                    return;
+                }
+                BLEPeripherals.Clear();
                 await _bleHandlerService.StartScanningForDevicesAsync();
             }
             catch (Exception ex)

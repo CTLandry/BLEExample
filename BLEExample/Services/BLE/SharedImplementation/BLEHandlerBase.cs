@@ -128,6 +128,7 @@ namespace BLEExample.Services.BLE.SharedImplementation
             }
             catch (Exception ex)
             {
+                var error = ex.Message;
                 //TODO implement exception handling service Task threw general exception
                 throw;
             }
