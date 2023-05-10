@@ -55,4 +55,8 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Platforms\Android\Services\BLE\PlatformImplementation\CallBackEventArgs\" />
+	</ItemGroup>
+
 </Project>
